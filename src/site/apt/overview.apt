@@ -1,0 +1,29 @@
+         ---
+      CP Protocol
+         ---
+      Christophe Marchand
+         ---
+      2016-05-17
+         ---
+
+CP Protocol
+
+  cp-protocol is a protocol implementation that is used to extend URL mecanisms
+  and to allow to specify resources located in classpath.
+
+  Resources URL form is :
+
++----
+cp:<path-to-resource>
++----
+
+  where <path-to-resource> is a path that is compliant to {{{https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html#getResourceAsStream-java.lang.String-}Class.getResourceAsStream(String)}}
+
+  A helper class is provided to register this protocol : {{{./apidocs/top/marchand/xml/protocols/ProtocolInstaller.html}ProtocolInstaller}}\
+  Just call :
+
++----
+top.marchand.xml.protocols.ProtocolInstaller.registerAdditionalProtocols()
++----
+
+ before creating any <<<java.net.URL>>>, so in the <<<main(String[])>>> of your application, for example.

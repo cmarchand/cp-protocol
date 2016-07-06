@@ -3,7 +3,7 @@
 
     <groupId>top.marchand.xml</groupId>
     <artifactId>cp-protocol</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
 
@@ -25,7 +25,7 @@
         <connection>scm:git:https://github.com/cmarchand/cp-protocol</connection>
         <developerConnection>scm:git:git@github.com:cmarchand/cp-protocol.git</developerConnection>
         <url>scm:git:https://github.com/cmarchand/cp-protocol</url>
-        <tag>HEAD</tag>
+        <tag>cp-protocol-1.0</tag>
     </scm>
 
     <developers>

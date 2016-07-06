@@ -23,7 +23,7 @@
 
     <scm>
         <connection>scm:git:https://github.com/cmarchand/cp-protocol</connection>
-        <developerConnection>scm:git:https://github.com/cmarchand/cp-protocol</developerConnection>
+        <developerConnection>scm:git:git@github.com:cmarchand/cp-protocol.git</developerConnection>
         <url>scm:git:https://github.com/cmarchand/cp-protocol</url>
         <tag>HEAD</tag>
     </scm>

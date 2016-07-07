@@ -8,7 +8,7 @@
 
 
     <name>cp-protocol</name>
-    <description>Protocol implementation to load resources from classpath</description>
+    <description>Protocol implementation to load resources from classpath. Temporary branch fo Nexus purpose</description>
     <inceptionYear>2016</inceptionYear>
     <url>https://github.com/cmarchand/cp-protocol</url>
 

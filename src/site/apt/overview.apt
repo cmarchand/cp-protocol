@@ -27,3 +27,18 @@ top.marchand.xml.protocols.ProtocolInstaller.registerAdditionalProtocols()
 +----
 
  before creating any <<<java.net.URL>>>, so in the <<<main(String[])>>> of your application, for example.
+
+* Starting your application with <<<cp:>>> protocol support without modifying it 
+
+ You can also start your application via <<<ProtocolInstaller.main(...)>>>. If your application is started via
+
++----
+java your.package.YourClass arg1 arg2 arg3
++----
+
+ just start it  via
+
++----
+java top.marchand.xml.protocols.ProtocolInstaller your.package.YourClass arg1 arg2 arg3
++----
+ and you will be able to use <<<cp:...>>> URL forms...

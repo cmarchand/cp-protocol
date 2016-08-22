@@ -6,6 +6,10 @@
  */
 package top.marchand.xml.protocols;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Arrays;
+
 /**
  * A helper class to install CP protocol.
  * @author cmarchand
@@ -25,6 +29,30 @@ public class ProtocolInstaller {
             }
             uriHandlers += packageName;
             System.setProperty(protocolPathProp, uriHandlers);
+        }
+    }
+    
+    /**
+     * Entry point.
+     * This can be used to start another program, installing protocols before.
+     * <tt>java -cp ...top.marchand.xml.protocols.ProtocolInstaller ClassToStart param1 param2 ...</tt>
+     * This install protocols, and then starts <tt>ClassToStart</tt> as if ClassToStart was started normally.
+     * 
+     * @param args Command line arguments
+     */
+    public static void main(String[] args) {
+        registerAdditionalProtocols();
+        if(args.length>0) {
+            String className = args[0];
+            String[] argv = Arrays.copyOfRange(args, 1, args.length);
+            try {
+                Class clazz = Class.forName(className);
+                Method m = clazz.getMethod("main", String[].class);
+                m.invoke(null, (Object)argv);
+            } catch(ClassNotFoundException | NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+                ex.printStackTrace(System.err);
+                System.exit(1);
+            }
         }
     }
     

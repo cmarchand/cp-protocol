@@ -3,7 +3,7 @@
 
     <groupId>top.marchand.xml</groupId>
     <artifactId>cp-protocol</artifactId>
-    <version>1.0</version>
+    <version>1.2</version>
     <packaging>jar</packaging>
 
 

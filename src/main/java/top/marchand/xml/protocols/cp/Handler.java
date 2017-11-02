@@ -8,6 +8,7 @@ package top.marchand.xml.protocols.cp;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLStreamHandler;
@@ -21,6 +22,17 @@ import java.net.URLStreamHandler;
  * @author Christophe Marchand &lt;christophe@marchand.top&gt;
  */
 public class Handler extends URLStreamHandler {
+    private static final ThreadLocal<ClassLoader> CP_THREAD_LOCAL = new ThreadLocal<>();
+    
+    /**
+     * Set the ClassLoader to load resources from, for the current thread.
+     * Behing the scene, a <tt>ThreadLocal&lt;ClassLoader&gt;</tt> is used.
+     * If no ClassLoader is specified, <tt>Thread.currrentThread().getContextClassLoader()</tt> is used.
+     * @param cl The class loader to use for the current thread
+     */
+    public static void setClassLoader(final ClassLoader cl) {
+        CP_THREAD_LOCAL.set(cl);
+    }
 
     @Override
     protected URLConnection openConnection(URL u) throws IOException {
@@ -31,9 +43,12 @@ public class Handler extends URLStreamHandler {
     public class CpUrlConnection extends URLConnection {
         private final String path;
         
-        private CpUrlConnection(URL url) {
+        private CpUrlConnection(URL url) throws MalformedURLException {
             super(url);
-            path = url.toExternalForm().substring(3);
+            // suppress the cp:
+            String sTmp = url.toExternalForm().substring(3);
+            if(!sTmp.startsWith("/")) throw new MalformedURLException("cp: URL must be absolute. i.e. start with 'cp:/'");
+            path = sTmp.substring(1);
         }
 
         @Override
@@ -43,7 +58,9 @@ public class Handler extends URLStreamHandler {
 
         @Override
         public InputStream getInputStream() throws IOException {
-            return this.getClass().getResourceAsStream(path);
+            ClassLoader cl = Handler.CP_THREAD_LOCAL.get();
+            if(cl==null) cl = Thread.currentThread().getContextClassLoader();
+            return cl.getResourceAsStream(path);
         }
         
     }

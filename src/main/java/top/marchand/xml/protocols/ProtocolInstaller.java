@@ -35,8 +35,8 @@ public class ProtocolInstaller {
     /**
      * Entry point.
      * This can be used to start another program, installing protocols before.
-     * <tt>java -cp ...top.marchand.xml.protocols.ProtocolInstaller ClassToStart param1 param2 ...</tt>
-     * This install protocols, and then starts <tt>ClassToStart</tt> as if ClassToStart was started normally.
+     * {@code java -cp ...top.marchand.xml.protocols.ProtocolInstaller ClassToStart param1 param2 ...}
+     * This install protocols, and then starts {@code ClassToStart} as if ClassToStart was started normally.
      * 
      * @param args Command line arguments
      */

@@ -14,8 +14,8 @@ import java.net.URLConnection;
 import java.net.URLStreamHandler;
 
 /**
- * A URLStreamHandler for <tt>cp</tt> protocol.
- * <p><tt>cp:</tt> protocol is a protocol where resources are in classpath,
+ * A URLStreamHandler for {@code cp} protocol.
+ * <p>{@code cp:} protocol is a protocol where resources are in classpath,
  * and <i>scheme-specific-part</i> (see {@link java.net.URI}) is the path
  * expected by {@link java.lang.Class#getResourceAsStream(java.lang.String) }</p>
  * 
@@ -26,8 +26,8 @@ public class Handler extends URLStreamHandler {
     
     /**
      * Set the ClassLoader to load resources from, for the current thread.
-     * Behing the scene, a <tt>ThreadLocal&lt;ClassLoader&gt;</tt> is used.
-     * If no ClassLoader is specified, <tt>Thread.currrentThread().getContextClassLoader()</tt> is used.
+     * Behing the scene, a {@code ThreadLocal&lt;ClassLoader&gt;} is used.
+     * If no ClassLoader is specified, {@code Thread.currrentThread().getContextClassLoader()} is used.
      * @param cl The class loader to use for the current thread
      */
     public static void setClassLoader(final ClassLoader cl) {

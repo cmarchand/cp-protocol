@@ -5,7 +5,7 @@
 
   <groupId>top.marchand.xml</groupId>
   <artifactId>cp-protocol</artifactId>
-  <version>2.1</version>
+  <version>2.2</version>
   <packaging>jar</packaging>
 
   <name>cp-protocol</name>
@@ -70,31 +70,6 @@
           <version>3.8.1</version>
           <executions>
             <execution>
-              <id>jdk11-compile</id>
-              <phase>compile</phase>
-              <goals>
-                <goal>compile</goal>
-              </goals>
-              <configuration>
-                <release>11</release>
-                <multiReleaseOutput>true</multiReleaseOutput>
-              </configuration>
-            </execution>
-            <execution>
-              <id>jdk8-compile</id>
-              <phase>compile</phase>
-              <goals>
-                <goal>compile</goal>
-              </goals>
-              <configuration>
-                <source>1.8</source>
-                <target>1.8</target>
-                <excludes>
-                  <exclude>module-info.java</exclude>
-                </excludes>
-              </configuration>
-            </execution>
-            <execution>
               <id>default-compile</id>
               <phase>none</phase>
             </execution>
@@ -102,6 +77,7 @@
           <configuration>
             <configuration>
               <release>11</release>
+              <source>11</source>
             </configuration>
           </configuration>
         </plugin>
@@ -136,6 +112,37 @@
     </pluginManagement>
 
     <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>jdk11-compile</id>
+              <phase>compile</phase>
+              <goals>
+                <goal>compile</goal>
+              </goals>
+              <configuration>
+                <release>11</release>
+                <multiReleaseOutput>true</multiReleaseOutput>
+              </configuration>
+            </execution>
+            <execution>
+              <id>jdk8-compile</id>
+              <phase>compile</phase>
+              <goals>
+                <goal>compile</goal>
+              </goals>
+              <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+                <excludes>
+                  <exclude>module-info.java</exclude>
+                </excludes>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
       <plugin>
         <groupId>com.code54.mojo</groupId>
         <artifactId>buildversion-plugin</artifactId>
@@ -195,7 +202,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.9.1</version>
+        <version>3.2.0</version>
         <executions>
           <execution>
             <id>attach-javadocs</id>
@@ -203,6 +210,13 @@
             <goals>
               <goal>jar</goal>
             </goals>
+            <configuration>
+              <source>1.8</source>
+              <excludes>
+                <exclude>module-info.java</exclude>
+              </excludes>
+              <detectJavaApiLink>false</detectJavaApiLink>
+            </configuration>
           </execution>
         </executions>
       </plugin>

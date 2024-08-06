@@ -60,6 +60,9 @@ public class Handler extends URLStreamHandler {
         public InputStream getInputStream() throws IOException {
             ClassLoader cl = Handler.CP_THREAD_LOCAL.get();
             if(cl==null) cl = Thread.currentThread().getContextClassLoader();
+            InputStream inputStream = cl.getResourceAsStream(path);
+            if(inputStream==null)
+                throw new IOException("Could not find resource " + path);
             return cl.getResourceAsStream(path);
         }
         

@@ -9,8 +9,11 @@ package top.marchand.xml.protocols;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.IOException;
 import java.net.URL;
 import static org.junit.Assert.*;
+
+import com.sun.jdi.InvalidModuleException;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -39,5 +42,15 @@ public class CpProtocolTest {
         String s = br.readLine();
         assertEquals("The read line is not XXXXX", "XXXXX", s);
         is.close();
+    }
+
+    @Test
+    public void notExistingFile() throws Exception {
+        try {
+            InputStream is = new URL("cp:/top/marchand/xml/protocols/not-existing.test").openConnection().getInputStream();
+            fail("For not existing files, an IOException should be thrown!");
+        } catch (IOException e){
+            // A thrown IOException is the expected behavior
+        }
     }
 }
